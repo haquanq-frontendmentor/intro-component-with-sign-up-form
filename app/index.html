@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./main.css" />
+
+    <title>Frontend Mentor | Intro component with sign up form</title>
+  </head>
+  <body>
+    <main class="main__container">
+      <picture class="main__bg-pattern" aria-hidden="true">
+        <source srcset="./assets/images/bg-intro-desktop.png" media="(min-width: 48em)" />
+        <img src="./assets/images/bg-intro-mobile.png" alt="Background pattern" />
+      </picture>
+      <div class="main__layout">
+        <article class="intro__wrapper">
+          <h1 class="intro__headline">Learn to code by watching others</h1>
+          <p class="intro__description">
+            See how experienced developers solve problems in real-time. Watching scripted tutorials
+            is great, but understanding how developers think is invaluable.
+          </p>
+        </article>
+
+        <section class="signup__wrapper">
+          <h2 class="signup__offer">
+            <span class="signup__offer__inner">
+              <span class="signup__offer__title">
+                <span class="signup__offer__title--bold">Try it free 7 days </span
+                ><span>then $20/mo. thereafter</span>
+              </span>
+            </span>
+          </h2>
+          <h3 class="sr-only">Sign up</h3>
+          <form class="signup__form" novalidate>
+            <div class="signup__form__inner">
+              <div class="textbox">
+                <div class="textbox__inner">
+                  <input
+                    class="textbox__input"
+                    id="first-name-input"
+                    type="text"
+                    placeholder=""
+                    aria-invalid="false"
+                    aria-describedby="first-name-input-hint"
+                    aria-required="true"
+                  />
+                  <label class="textbox__label" for="first-name-input">
+                    <span class="textbox__label--text">First Name</span>
+                    <span class="textbox__label--bg"></span>
+                  </label>
+                  <span class="textbox__border textbox__border--error"></span>
+                  <span class="textbox__border textbox__border--hover"></span>
+                  <img
+                    class="textbox__icon textbox__icon--error"
+                    src="./assets/images/icon-error.svg"
+                    alt="Error icon"
+                    aria-hidden="true"
+                  />
+                </div>
+                <p class="textbox__hint" id="first-name-input-hint"></p>
+              </div>
+              <div class="textbox">
+                <div class="textbox__inner">
+                  <input
+                    class="textbox__input"
+                    id="last-name-input"
+                    type="text"
+                    placeholder=""
+                    aria-invalid="false"
+                    aria-describedby="last-name-input-hint"
+                    aria-required="true"
+                  />
+                  <label class="textbox__label" for="last-name-input">
+                    <span class="textbox__label--text">Last Name</span>
+                    <span class="textbox__label--bg"></span>
+                  </label>
+                  <span class="textbox__border textbox__border--error"></span>
+                  <span class="textbox__border textbox__border--hover"></span>
+                  <img
+                    class="textbox__icon textbox__icon--error"
+                    src="./assets/images/icon-error.svg"
+                    alt="Error icon"
+                    aria-hidden="true"
+                    aria-required="true"
+                  />
+                </div>
+                <p class="textbox__hint" id="last-name-input-hint"></p>
+              </div>
+              <div class="textbox">
+                <div class="textbox__inner">
+                  <input
+                    class="textbox__input"
+                    id="email-input"
+                    type="email"
+                    placeholder=""
+                    aria-invalid="false"
+                    aria-describedby="email-input-hint"
+                    aria-required="true"
+                  />
+                  <label class="textbox__label" for="email-input">
+                    <span class="textbox__label--text">Email Address</span>
+                    <span class="textbox__label--bg"></span>
+                  </label>
+                  <span class="textbox__border textbox__border--error"></span>
+                  <span class="textbox__border textbox__border--hover"></span>
+                  <img
+                    class="textbox__icon textbox__icon--error"
+                    src="./assets/images/icon-error.svg"
+                    alt="Error icon"
+                    aria-hidden="true"
+                  />
+                </div>
+                <p class="textbox__hint" id="email-input-hint"></p>
+              </div>
+              <div class="textbox">
+                <div class="textbox__inner">
+                  <input
+                    class="textbox__input"
+                    id="password-input"
+                    type="text"
+                    placeholder=""
+                    aria-invalid="false"
+                    aria-describedby="password-input-hint"
+                    aria-required="true"
+                  />
+                  <label class="textbox__label" for="password-input">
+                    <span class="textbox__label--text">Password</span>
+                    <span class="textbox__label--bg"></span>
+                  </label>
+                  <span class="textbox__border textbox__border--error"></span>
+                  <span class="textbox__border textbox__border--hover"></span>
+                  <img
+                    class="textbox__icon textbox__icon--error"
+                    src="./assets/images/icon-error.svg"
+                    alt="Error icon"
+                    aria-hidden="true"
+                  />
+                </div>
+                <p class="textbox__hint" id="password-input-hint"></p>
+              </div>
+              <button class="signup__form__submit-btn" aria-describedby="claim-term">
+                <span class="signup__form__submit-btn--text">Claim your free trial</span>
+                <span class="signup__form__submit-btn--overlay"></span>
+              </button>
+              <p class="signup__form__term" id="claim-term">
+                By clicking the button, you are agreeing to our
+                <a class="signup__form__term--link" href="">Terms and Services</a>
+              </p>
+            </div>
+            <p class="sr-only" id="form-messages" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+  </body>
+
+  <script src="main.js"></script>
+</html>
