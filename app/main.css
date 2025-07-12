@@ -96,8 +96,10 @@
     --leading-9-5: calc(var(--leading-9) + var(--base-unit));
     --leading-12: calc(var(--space-unit) * 12);
     --leading-12-5: calc(var(--leading-12) + var(--base-unit));
+    --leading-13: calc(var(--space-unit) * 13);
+    --leading-13-5: calc(var(--leading-13) + var(--base-unit));
     --leading-14: calc(var(--space-unit) * 14);
-    --leading-14-5: calc(var(--leading-12) + var(--base-unit));
+    --leading-14-5: calc(var(--leading-14) + var(--base-unit));
 
     --tracking-tight: 0.01em;
     --tracking-none: 0em;
@@ -194,7 +196,7 @@ h6 {
     color: var(--clr-white);
     letter-spacing: var(--tracking-tight);
     font-size: clamp(var(--text-xl), 0.438rem + 5.598vw, var(--text-2xl));
-    line-height: clamp(var(--leading-9), 1.1169rem + 4.8346vw, var(--leading-12-5));
+    line-height: clamp(var(--leading-9), 1.1169rem + 4.8346vw, var(--leading-13-5) + var(--VERY_ODD_PIXEL));
     margin-bottom: clamp(var(--space-5-5), 1.0172rem + 1.5267vw, var(--space-7));
 }
 .intro__description {
