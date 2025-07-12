@@ -118,5 +118,8 @@ form.addEventListener("submit", (e) => {
         globalErrorHint.textContent = message;
         errorFields[0].focus();
         errorFields = [];
+    } else {
+        form.reset();
+        alert("Don't provide your information everywhere!");
     }
 });
