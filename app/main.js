@@ -1,170 +1,112 @@
-const firstNameTextbox = {
-    inputElement: document.querySelector("#first-name-input"),
-    inputHintElement: document.querySelector("#first-name-input-hint"),
-    isError: false,
-    getHint() {
-        if (this.isError) {
-            return "first name " + this.inputHintElement.textContent;
-        }
-        return "";
-    },
-    checkValid() {
-        const isEmpty = this.inputElement.value === "";
-        if (isEmpty) {
-            this.inputElement.setAttribute("aria-invalid", "true");
-            this.inputHintElement.textContent = "Can't be empty";
-            this.isError = true;
-        }
-        return !isEmpty;
-    },
-    init() {
-        this.inputElement.addEventListener("input", (e) => {
-            if (this.isError) {
-                this.inputElement.setAttribute("aria-invalid", "false");
-                this.inputHintElement.textContent = "";
-                this.isError = false;
-            }
-        });
-    },
-};
+const createTextbox = (id, props) => {
+    const wrapper = document.querySelector(".textbox--" + id);
+    const input = wrapper.querySelector("[data-textbox-input]");
+    const hint = wrapper.querySelector("[data-textbox-hint]");
+    const label = wrapper.querySelector("[data-textbox-label]");
 
-const lastNameTextbox = {
-    inputElement: document.querySelector("#last-name-input"),
-    inputHintElement: document.querySelector("#last-name-input-hint"),
-    isError: false,
-    getHint() {
-        if (this.isError) {
-            return "last name " + this.inputHintElement.textContent;
-        }
-        return "";
-    },
-    checkValid() {
-        const isEmpty = this.inputElement.value === "";
-        if (isEmpty) {
-            this.inputElement.setAttribute("aria-invalid", "true");
-            this.inputHintElement.textContent = "Can't be empty";
-            this.isError = true;
-        }
-        return !isEmpty;
-    },
-    init() {
-        this.inputElement.addEventListener("input", (e) => {
-            if (this.isError) {
-                this.inputElement.setAttribute("aria-invalid", "false");
-                this.inputHintElement.textContent = "";
-                this.isError = false;
-            }
-        });
-    },
-};
+    if (props.maxLength) input.maxLength = props.maxLength;
+    if (props.minLength) input.minLength = props.minLength;
+    if (props.required) {
+        input.required = props.required;
+        label.textContent += " *";
+    }
 
-const emailTextbox = {
-    inputElement: document.querySelector("#email-input"),
-    inputHintElement: document.querySelector("#email-input-hint"),
-    isError: false,
-    getHint() {
-        if (this.isError) {
-            return "email " + this.inputHintElement.textContent;
-        }
-        return "";
-    },
-    checkValid() {
-        const isEmpty = this.inputElement.value === "";
-
-        if (isEmpty) {
-            this.inputElement.setAttribute("aria-invalid", "true");
-            this.inputHintElement.textContent = "Can't be empty";
-            this.isError = true;
-
-            return !isEmpty;
+    const validate = () => {
+        let errorMessage = "";
+        if (input.validity.valueMissing) {
+            errorMessage = "PLease fill out this field.";
+        } else if (input.validity.tooShort || input.validity.tooLong) {
+            errorMessage = `Must be beetween ${props.minLength} and ${props.maxLength} characters.`;
+        } else if (props.customValidator) {
+            errorMessage = props.customValidator(input.value);
         }
 
-        const isCorrectEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.inputElement.value);
-
-        if (!isCorrectEmail) {
-            this.inputElement.setAttribute("aria-invalid", "true");
-            this.inputHintElement.textContent = "Please provide a valid email";
-            this.isError = true;
-            return isCorrectEmail;
+        if (errorMessage !== "") {
+            input.setAttribute("aria-invalid", "true");
+            hint.textContent = errorMessage;
+            return false;
         }
 
+        input.setAttribute("aria-invalid", "false");
+        hint.textContent = "";
         return true;
-    },
-    init() {
-        this.inputElement.addEventListener("input", (e) => {
-            if (this.isError) {
-                this.inputElement.setAttribute("aria-invalid", "false");
-                this.inputHintElement.textContent = "";
-                this.isError = false;
-            }
-        });
-    },
+    };
+
+    const getName = () => {
+        return label.textContent;
+    };
+
+    const focus = () => {
+        input.focus();
+    };
+
+    input.addEventListener("blur", () => validate());
+
+    return { validate, getName, focus };
 };
 
-const passwordTextbox = {
-    inputElement: document.querySelector("#password-input"),
-    inputHintElement: document.querySelector("#password-input-hint"),
-    isError: false,
-    getHint() {
-        if (this.isError) {
-            return "password " + this.inputHintElement.textContent;
-        }
+const firstNameTextbox = createTextbox("first-name", {
+    minLength: 2,
+    maxLength: 50,
+    required: true,
+    customValidator: (value) => {
+        const textAndSpacesOnlyPattern = /^[a-zA-Z\s]*$/;
+        if (!textAndSpacesOnlyPattern.test(value)) return "Please use letters only (a-z, A-Z).";
         return "";
     },
-    checkValid() {
-        const isEmpty = this.inputElement.value === "";
-        if (isEmpty) {
-            this.inputElement.setAttribute("aria-invalid", "true");
-            this.inputHintElement.textContent = "Can't be empty";
-            this.isError = true;
-        }
-        return !isEmpty;
+});
+
+const lasttNameTextbox = createTextbox("last-name", {
+    minLength: 2,
+    maxLength: 50,
+    required: true,
+    customValidator: (value) => {
+        const textAndSpacesOnlyPattern = /^[a-zA-Z\s]*$/;
+        if (!textAndSpacesOnlyPattern.test(value)) return "Please use letters only (a-z, A-Z).";
+        return "";
     },
-    init() {
-        this.inputElement.addEventListener("input", (e) => {
-            if (this.isError) {
-                this.inputElement.setAttribute("aria-invalid", "false");
-                this.inputHintElement.textContent = "";
-                this.isError = false;
-            }
-        });
+});
+
+const emailTextbox = createTextbox("email", {
+    required: true,
+    customValidator: (value) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) return "Please use a valid email address.";
+        return "";
     },
-};
+});
 
-const signUpForm = {
-    formElement: document.querySelector(".signup__form"),
-    formMessageElement: document.querySelector("#form-messages"),
-    init() {
-        firstNameTextbox.init();
-        lastNameTextbox.init();
-        emailTextbox.init();
-        passwordTextbox.init();
+const passwordTextbox = createTextbox("password", {
+    minLength: 8,
+    maxLength: 30,
+    required: true,
+});
 
-        this.formElement.addEventListener("submit", (e) => {
-            e.preventDefault();
-            console.log("submit");
+const form = document.querySelector(".signup__form");
+const globalErrorHint = document.querySelector("#form-messages");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-            const valid = [
-                firstNameTextbox.checkValid(),
-                lastNameTextbox.checkValid(),
-                emailTextbox.checkValid(),
-                passwordTextbox.checkValid(),
-            ].every((v) => v);
+    let errorFields = [];
 
-            const messages = [
-                firstNameTextbox.getHint(),
-                lastNameTextbox.getHint(),
-                emailTextbox.getHint(),
-                passwordTextbox.getHint(),
-            ].join(", ");
+    if (firstNameTextbox.validate() === false) {
+        errorFields.push(firstNameTextbox);
+    }
+    if (lasttNameTextbox.validate() === false) {
+        errorFields.push(lasttNameTextbox);
+    }
+    if (emailTextbox.validate() === false) {
+        errorFields.push(emailTextbox);
+    }
+    if (passwordTextbox.validate() === false) {
+        errorFields.push(passwordTextbox);
+    }
 
-            this.formMessageElement.textContent = messages;
-
-            if (!valid) return;
-
-            alert("OK");
-        });
-    },
-};
-
-signUpForm.init();
+    if (errorFields.length > 0) {
+        let message = "Form submission failed. 3 errors found. Please check your ";
+        errorFields.forEach((field) => (message += field.getName() + ", "));
+        globalErrorHint.textContent = message;
+        errorFields[0].focus();
+        errorFields = [];
+    }
+});
