@@ -231,13 +231,22 @@ h6 {
 }
 .textbox {
     --textbox-padding-x: clamp(var(--space-4), 4.071vw + 0.046rem, var(--space-8));
+
     --textbox-border: transparent;
     --textbox-border-focus: var(--clr-blue-500);
     --textbox-border-error: var(--clr-red-700);
+
     --textbox-label: var(--clr-gray-700);
     --textbox-label-focus: var(--clr-blue-500);
     --textbox-label-error: var(--clr-red-700);
+    --textbox-label-animation-duration: 200ms;
+    --textbox-label-animation-delay: 100ms;
+
     --textbox-input-height: 3.5rem;
+
+    --textbox-overlay-animation-duration: 200ms;
+
+    --textbox-button-animation-duration: 200ms;
 
     position: relative;
     border-radius: var(--rounded-sm);
@@ -257,7 +266,9 @@ h6 {
     align-items: center;
     justify-content: end;
     border: 2px solid transparent;
-    transition: border-color 200ms ease;
+    transition-property: border-color;
+    transition-duration: var(--textbox-overlay-animation-duration);
+    transition-timing-function: ease;
     padding-right: calc(var(--textbox-padding-x) - var(--VERY_ODD_PIXEL));
     inset: 0;
 }
@@ -282,7 +293,9 @@ h6 {
     letter-spacing: var(--tracking-loose);
     left: calc(var(--textbox-padding-x) + var(--VERY_ODD_PIXEL));
     top: var(--space-5-5);
-    transition: 200ms ease;
+    transition-property: top;
+    transition-timing-function: ease;
+    transition-duration: var(--textbox-label-animation-duration);
     background-color: var(--clr-white);
 }
 .textbox__label::after,
@@ -294,7 +307,10 @@ h6 {
     bottom: 0;
     width: 0;
     background-color: var(--clr-white);
-    transition: width 200ms ease 100ms;
+    transition-property: width;
+    transition-timing-function: ease;
+    transition-duration: var(--textbox-label-animation-duration);
+    transition-delay: var(--textbox-label-animation-delay);
 }
 .textbox__label::after {
     left: 100%;
@@ -351,7 +367,7 @@ h6 {
 }
 .textbox__show-password-btn--icon {
     stroke: var(--clr-gray-500);
-    transition: stroke 200ms ease;
+    transition: stroke var(--textbox-button-animatino-duration) ease;
 }
 .textbox__show-password-btn[aria-pressed="false"] > svg:first-child {
     display: none;
@@ -467,7 +483,17 @@ h6 {
         stroke: var(--clr-blue-500);
     }
 }
-
+@media (prefers-reduced-motion: reduce) {
+    .signup__submit-btn {
+        --btn-animation-duration: 0;
+    }
+    .textbox {
+        --textbox-label-animation-duration: 0;
+        --textbox-label-animation-delay: 0;
+        --textbox-overlay-animation-duration: 0;
+        --textbox-button-animation-duration: 0;
+    }
+}
 @media (min-width: 64em) {
     .main__container {
         background-image: url("./assets/images/bg-intro-desktop.png");
