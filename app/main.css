@@ -258,7 +258,7 @@ h6 {
     justify-content: end;
     border: 2px solid transparent;
     transition: border-color 200ms ease;
-    padding-right: var(--space-6);
+    padding-right: calc(var(--textbox-padding-x) - var(--VERY_ODD_PIXEL));
     inset: 0;
 }
 .textbox__input {
@@ -317,6 +317,7 @@ h6 {
 }
 .textbox__input[aria-invalid="true"] ~ .textbox__overlay::after {
     content: url("./assets/images/icon-error.svg");
+    height: var(--space-6);
 }
 .textbox__input:not(:placeholder-shown) + .textbox__label,
 .textbox__input:focus + .textbox__label {
@@ -335,6 +336,31 @@ h6 {
 }
 .textbox__input:focus ~ .textbox__overlay {
     border-color: var(--textbox-border-focus);
+}
+.textbox__show-password-btn {
+    position: absolute;
+    top: calc(var(--space-4) + var(--VERY_ODD_PIXEL));
+    right: calc(var(--textbox-padding-x) + var(--VERY_ODD_PIXEL));
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+.textbox__show-password-btn:active {
+    transform: scale(0.95);
+}
+.textbox__show-password-btn--icon {
+    stroke: var(--clr-gray-500);
+    transition: stroke 200ms ease;
+}
+.textbox__show-password-btn[aria-pressed="false"] > svg:first-child {
+    display: none;
+}
+.textbox__show-password-btn[aria-pressed="true"] > svg:last-child {
+    display: none;
+}
+.textbox--password .textbox__overlay::after {
+    padding-right: var(--space-8);
 }
 .signup__submit-btn {
     --btn-surface-gap: var(--space-1);
@@ -436,6 +462,9 @@ h6 {
     }
     .signup__submit-btn:hover {
         opacity: 0.75;
+    }
+    .textbox__show-password-btn:hover svg {
+        stroke: var(--clr-blue-500);
     }
 }
 

@@ -4,6 +4,16 @@ const createTextbox = (id, props) => {
     const hint = wrapper.querySelector("[data-textbox-hint]");
     const label = wrapper.querySelector("[data-textbox-label]");
 
+    const showPasswordButton = wrapper.querySelector(".textbox__show-password-btn");
+
+    if (showPasswordButton) {
+        showPasswordButton.addEventListener("click", () => {
+            const pressed = showPasswordButton.getAttribute("aria-pressed") === "true";
+            input.type = pressed ? "password" : "text";
+            showPasswordButton.setAttribute("aria-pressed", !pressed);
+        });
+    }
+
     if (props.maxLength) input.maxLength = props.maxLength;
     if (props.minLength) input.minLength = props.minLength;
     if (props.required) {
