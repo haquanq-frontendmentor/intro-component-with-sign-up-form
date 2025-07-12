@@ -2,9 +2,16 @@
 
 This is a solution to the [Intro component with sign up form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## The challenge
+## Table of contents
 
-Users should be able to:
+- [Project overview](#rocket-project-overview)
+- [Development workflow](#boat-development-workflow)
+- [Working in this repository](#astronaut-working-in-this-repository)
+- [License](#page_with_curl-license)
+
+## :rocket: Project overview
+
+### Challenge equirements
 
 - View the optimal layout for the site depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -12,19 +19,51 @@ Users should be able to:
   - Any `input` field is empty. The message for this error should say _"[Field Name] cannot be empty"_
   - The email address is not formatted correctly (i.e. a correct email address should have this structure: `name@host.tld`). The message for this error should say _"Looks like this is not an email"_
 
-## Solution
+### Implemented features
 
-- Mobile-first workflow
-- Accessible form, inputs
-- Built with: `HTML` `CSS` `JS`
+Functional
 
-![](./.docs/design/desktop-design.jpg)
+- [x] Built textbox component that
+  - [x] Validate basic specifications (required, length) and can be provided with custom validators
+  - [x] Show every error when users blur input (from basic specifications to custom validators)
+  - [x] Aggregate all invalid fields and notify screen readers
 
-# Working in `fm-intro-component-with-signup` repository
+Accessibility
 
-## Clone this project to your machine
+- [x] Responsive accross different screen sizes
+- [x] Added custom indicator when interactive elements focused
 
-Make sure you have Git & NodeJS installed in your system, open new terminal, run the following command:
+### Preview
+
+![](./.docs/preview.png)
+
+## :boat: Development workflow
+
+### Approach
+
+Developed with mobile-first workflow, followed with [ARIA Authoring Practices Guide (APG)](https://www.w3.org/WAI/ARIA/apg/)
+
+### Built with
+
+| Tool          | Note                               |
+| ------------- | ---------------------------------- |
+| `HTML`        | Standard markup language           |
+| `CSS`         | Vanilla CSS                        |
+| `JavsScript`  | Without any library                |
+| `BrowserSync` | Development server, live reloading |
+
+## :astronaut: Working in this repository
+
+### Presequisites
+
+Having these tools installed:
+
+- Git (prefer lastest LTS version)
+- NodeJS (prefer latest LTS version)
+
+### Clone this project to your machine
+
+Open new terminal, run the following command:
 
 ```
 git clone https://github.com/haquanq/fm-intro-component-with-signup.git
@@ -43,3 +82,7 @@ In terminal, run `npm run dev` to start development server:
 ```
 npm run dev
 ```
+
+## :page_with_curl: License
+
+This project follows [MIT License](./LICENSE). **DO NOT** use this project as your solution on [Frontend mentor](https://www.frontendmentor.io/solutions).
