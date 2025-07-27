@@ -1,6 +1,6 @@
 {
-  "name": "fm-intro-component-with-signup",
-  "description": "Solution for frontendmentor.io challenge: intro-component-with-signup",
+  "name": "intro-component-with-sign-up-form",
+  "description": "Solution for frontendmentor.io challenge: intro-component-with-sign-up-form",
   "devDependencies": {
     "browser-sync": "^3.0.2"
   },
